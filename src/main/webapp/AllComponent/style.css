@@ -1,0 +1,37 @@
+@charset "UTF-8";
+body{
+	background-color:#f7f7f7;
+}
+h1{
+	color:red;
+}
+.bg-custom{
+	background-color:#1a237e ;
+}
+.navbar .nav-item:hover .nav-link{
+	background-color:white;
+	color:black;
+	border-radius:20px;
+}
+.gap20{
+	gap:20px;
+}
+.back-img{
+background: url(../img/book.jpg);
+    height: 45vh;
+    width: 29%;
+    background-repeat: no-repeat;
+    background-size: auto
+	
+}
+.img-con{
+	width: 163px;
+    height: 200px;
+}
+.bg-col-w{
+	background-color:white;
+}
+.fix{
+	position:fixed;
+	bottom:0;
+}
