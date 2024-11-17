@@ -8,7 +8,13 @@
 <%@include file="allcss.jsp" %>
 </head>
 <body>
+<%
+if(session.getAttribute("user")=="admin@gmail.com"){
+%>
 <%@include file="navbar.jsp" %>
+
+
+
 <h2 class="text-center text-success">Hello,Admin</h2>
 <div class="container">
 	<div class="row gap-20">
@@ -39,7 +45,7 @@
 			</div>
 		
 		</a>
-		<a href="logout.jsp" class="col-md-3 bg-col-w gap-20">
+		<a href="../logout.jsp" class="col-md-3 bg-col-w gap-20">
 		
 			<div class="card-body text-center">
 			
@@ -51,6 +57,17 @@
 		
 	</div>
 	</div>
+	
+
+	
 <%@include file="footer.jsp" %>
+<%
+}
+else{
+	session.setAttribute("message", "Do Login");
+	
+	response.sendRedirect("../login.jsp");
+}
+%>
 </body>
 </html>

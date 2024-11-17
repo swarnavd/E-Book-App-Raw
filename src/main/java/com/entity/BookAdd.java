@@ -1,6 +1,12 @@
 package com.entity;
 
 public class BookAdd {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	int id;
 	public String getName() {
 		return name;

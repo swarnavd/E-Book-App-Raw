@@ -24,6 +24,10 @@ background: url(../img/book.jpg);
     background-size: auto
 	
 }
+.view-img{
+	height:50px;
+	width:50px;
+}
 .img-con{
 	width: 163px;
     height: 200px;

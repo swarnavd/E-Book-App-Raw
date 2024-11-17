@@ -54,6 +54,7 @@ public class Userdaoimpl implements Userdao{
 	        // Check if a result is returned
 	        if (rs.next()) { // Move the cursor to the first row
 	            us = new User(); // Create a new User object
+	            
 	            us.setName(rs.getString("name")); // Get the 'name' column value
 	            us.setEmail(rs.getString("email")); // Get the 'email' column value
 	            us.setPassword(rs.getString("password")); // Get the 'password' column value

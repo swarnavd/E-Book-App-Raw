@@ -2,9 +2,13 @@ package com.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.entity.BookAdd;
+import com.entity.User;
 
 public class Bookdaoimpl implements Bookdao{
 	private Connection conn;
@@ -44,6 +48,128 @@ public class Bookdaoimpl implements Bookdao{
 	        st.setString(7, "admin@gmail.com");
 
 	        int i = st.executeUpdate();
+	       // System.out.println("Insert result: " + i);
+	        if (i == 1) {
+	            f = true;
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("SQL Exception: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return f;
+	}
+
+
+
+	@Override
+	public List<BookAdd> viewBook(BookAdd br) {
+		// TODO Auto-generated method stub
+		 	BookAdd b=null;
+		    String sql = "SELECT * FROM book";
+		    @SuppressWarnings("rawtypes")
+			List<BookAdd> list=new ArrayList();
+		    try {
+		        // Prepare the SQL query
+		        PreparedStatement st = conn.prepareStatement(sql);
+		       
+		        
+		        // Execute the query
+		        ResultSet rs = st.executeQuery();
+		        
+		        // Check if a result is returned
+		        while (rs.next()) { // Move the cursor to the first row
+		            b=new BookAdd();
+		            b.setId(rs.getInt("bookid"));
+		            b.setName(rs.getString("name"));
+		            b.setAuthorName(rs.getString("author"));
+		            b.setPrice(rs.getString("price"));
+		            b.setCategory(rs.getString("category"));
+		            b.setStatus(rs.getString("status"));
+		            b.setImage(rs.getString("image"));
+		            b.setEmail(rs.getString("email"));
+		            list.add(b);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace(); // Print stack trace for debugging
+		    }
+		    
+		return list;
+		
+	}
+
+
+
+	@Override
+	public void delBook(int id) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM book where bookid=?";
+		try {
+	        PreparedStatement st = conn.prepareStatement(sql);
+	        st.setInt(1,id);
+	        int i=st.executeUpdate();
+	        
+		}
+		catch (SQLException e) {
+	        e.printStackTrace(); // Print stack trace for debugging
+	        System.out.println("SQL Exception: " + e.getMessage());
+	    }
+		
+		
+	}
+
+
+
+	@Override
+	public BookAdd editBook(int id) {
+		// TODO Auto-generated method stub
+		BookAdd b=new BookAdd();
+		
+		String sql = "SELECT * FROM book where bookid=?";
+	    try {
+	        // Prepare the SQL query
+	        PreparedStatement st = conn.prepareStatement(sql);
+	       st.setInt(1,id);
+	        
+	        // Execute the query
+	        ResultSet rs = st.executeQuery();
+	        System.out.println("Executing query: " + sql + " with id: " + id);
+	        // Check if a result is returned
+	        while(rs.next()) { // Move the cursor to the first row
+	            b.setId(rs.getInt("bookid"));
+	            b.setName(rs.getString("name"));
+	            b.setAuthorName(rs.getString("author"));
+	            b.setPrice(rs.getString("price"));
+	            b.setCategory(rs.getString("category"));
+	            b.setStatus(rs.getString("status"));
+	            b.setImage(rs.getString("image"));
+	            b.setEmail(rs.getString("email"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // Print stack trace for debugging
+	        System.out.println("SQL Exception: " + e.getMessage());
+	    }
+		
+		return b;
+	}
+	
+	
+	public boolean updateBook(int id,String name,String author,String price,String category,String status,String image) {
+		boolean f = false;
+	    String sql = "update book set name=?,author=?,price=?,category=?,status=?,image=? where bookid=?";
+	    
+	    try {
+	        PreparedStatement st = conn.prepareStatement(sql);
+
+	        
+	        st.setString(1, name);
+	        st.setString(2, author);
+	        st.setString(3, price);
+	        st.setString(4, category);
+	        st.setString(5, status);
+	        st.setString(6, image);
+	        st.setInt(7, id);
+
+	        int i = st.executeUpdate();
 	        System.out.println("Insert result: " + i);
 	        if (i == 1) {
 	            f = true;
@@ -54,6 +180,5 @@ public class Bookdaoimpl implements Bookdao{
 	    }
 	    return f;
 	}
-	
 
 }

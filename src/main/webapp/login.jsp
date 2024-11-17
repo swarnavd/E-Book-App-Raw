@@ -18,6 +18,10 @@
 			<p class="text-center text-danger">${message}</p>
 			<c:remove var = "message" />
 			</c:if>
+			<c:if test="${not empty lmsg }">
+			<p class="text-center text-danger">${lmsg}</p>
+			<c:remove var = "lmsg" />
+			</c:if>
 					<h2 class="text-center">Log In</h2>
 					<form action="Login" method="post">
 					  <div class="form-group">

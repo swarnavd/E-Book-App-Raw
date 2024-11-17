@@ -9,10 +9,6 @@
 <%@include file="/AllComponent/allcss.jsp" %>
 </head>
 <body>
-<% Connection con=DbConnect.getCon();
-out.println(con);
-
-%>
 <%@include file="/AllComponent/navbar.jsp" %>
 <div class="container-fluid back-img">
 	<h2 class="text-center text-success">E-BOOK Management System</h2>

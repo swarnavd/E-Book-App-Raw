@@ -41,8 +41,10 @@ public class Login extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		
-		if("admin@gmail.com".equals("email")&&"admin".equals("password")) {
-			response.sendRedirect("admin.jsp");
+		if("admin@gmail.com".equals(email)&&"admin".equals(password)) {
+			HttpSession session=request.getSession();
+			session.setAttribute("user", "admin@gmail.com");
+			response.sendRedirect("admin/admin.jsp");
 		}
 		else {
 			try {
