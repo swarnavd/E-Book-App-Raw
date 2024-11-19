@@ -11,9 +11,85 @@ import com.entity.BookAdd;
 import com.entity.User;
 
 public class Bookdaoimpl implements Bookdao{
+	
 	private Connection conn;
+	@Override
+	public List<BookAdd> showBookHome() {
+		// TODO Auto-generated method stub
+		String sql="select * from book where category=? and status=?";
+		BookAdd b=null;
+		List<BookAdd> list=new ArrayList();
+		try {
+			PreparedStatement st=conn.prepareStatement(sql);
+			st.setString(1, "New");
+			st.setString(2, "Active");
+			
+			ResultSet rs=st.executeQuery();
+			int i=1;
+			while(rs.next()&&i<=4) {
+				b=new BookAdd();
+				b.setId(rs.getInt("bookid"));
+	            b.setName(rs.getString("name"));
+	            b.setAuthorName(rs.getString("author"));
+	            b.setPrice(rs.getString("price"));
+	            b.setCategory(rs.getString("category"));
+	            b.setStatus(rs.getString("status"));
+	            b.setImage(rs.getString("image"));
+	            b.setEmail(rs.getString("email"));
+	            list.add(b);
+			}
+			
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+		
+	}
+
 
 	
+
+	
+
+	@Override
+	public List<BookAdd> getRecentBook() {
+		String sql="select * from book where status=? order by bookid desc";
+		BookAdd b=null;
+		List<BookAdd> list=new ArrayList();
+		try {
+			PreparedStatement st=conn.prepareStatement(sql);
+			//st.setString(1, "New");
+			st.setString(1, "Active");
+			
+			ResultSet rs=st.executeQuery();
+			int i=1;
+			while(rs.next()&&i<=4) {
+				b=new BookAdd();
+				b.setId(rs.getInt("bookid"));
+	            b.setName(rs.getString("name"));
+	            b.setAuthorName(rs.getString("author"));
+	            b.setPrice(rs.getString("price"));
+	            b.setCategory(rs.getString("category"));
+	            b.setStatus(rs.getString("status"));
+	            b.setImage(rs.getString("image"));
+	            b.setEmail(rs.getString("email"));
+	            list.add(b);
+			}
+			
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
+
+
 
 	public Bookdaoimpl(Connection conn) {
 		super();
@@ -29,15 +105,6 @@ public class Bookdaoimpl implements Bookdao{
 	    
 	    try {
 	        PreparedStatement st = conn.prepareStatement(sql);
-
-	        // Debugging output to verify values
-	        System.out.println("Preparing to insert:");
-	        System.out.println("Name: " + b.getName());
-	        System.out.println("Author: " + b.getAuthorName());
-	        System.out.println("Price: " + b.getPrice());
-	        System.out.println("Category: " + b.getCategory());
-	        System.out.println("Status: " + b.getStatus());
-	        System.out.println("Image: " + b.getImage());
 
 	        st.setString(1, b.getName());
 	        st.setString(2, b.getAuthorName());
@@ -180,5 +247,120 @@ public class Bookdaoimpl implements Bookdao{
 	    }
 	    return f;
 	}
+
+
+
+
+
+
+	@Override
+	public List<BookAdd> allNewBook() {
+		String sql="select * from book where category =? and status=? order by bookid desc";
+		BookAdd b=null;
+		List<BookAdd> list=new ArrayList();
+		try {
+			PreparedStatement st=conn.prepareStatement(sql);
+			st.setString(1, "New");
+			st.setString(2, "Active");
+			
+			ResultSet rs=st.executeQuery();
+			
+			while(rs.next()) {
+				b=new BookAdd();
+				b.setId(rs.getInt("bookid"));
+	            b.setName(rs.getString("name"));
+	            b.setAuthorName(rs.getString("author"));
+	            b.setPrice(rs.getString("price"));
+	            b.setCategory(rs.getString("category"));
+	            b.setStatus(rs.getString("status"));
+	            b.setImage(rs.getString("image"));
+	            b.setEmail(rs.getString("email"));
+	            list.add(b);
+			}
+			
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
+
+
+
+	@Override
+	public List<BookAdd> allRecentBook() {
+		String sql="select * from book where  status=? order by bookid desc";
+		BookAdd b=null;
+		List<BookAdd> list=new ArrayList();
+		try {
+			PreparedStatement st=conn.prepareStatement(sql);
+			//st.setString(1, "New");
+			st.setString(1, "Active");
+			
+			ResultSet rs=st.executeQuery();
+			
+			while(rs.next()) {
+				b=new BookAdd();
+				b.setId(rs.getInt("bookid"));
+	            b.setName(rs.getString("name"));
+	            b.setAuthorName(rs.getString("author"));
+	            b.setPrice(rs.getString("price"));
+	            b.setCategory(rs.getString("category"));
+	            b.setStatus(rs.getString("status"));
+	            b.setImage(rs.getString("image"));
+	            b.setEmail(rs.getString("email"));
+	            list.add(b);
+			}
+			
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
+
+
+
+
+	@Override
+	public BookAdd viewDetails( int id) {
+		BookAdd b=new BookAdd();
+		
+		String sql = "SELECT * FROM book where bookid=?";
+	    try {
+	        // Prepare the SQL query
+	        PreparedStatement st = conn.prepareStatement(sql);
+	       st.setInt(1,id);
+	        
+	        // Execute the query
+	        ResultSet rs = st.executeQuery();
+	        System.out.println("Executing query: " + sql + " with id: " + id);
+	        // Check if a result is returned
+	        while(rs.next()) { // Move the cursor to the first row
+	            b.setId(rs.getInt("bookid"));
+	            b.setName(rs.getString("name"));
+	            b.setAuthorName(rs.getString("author"));
+	            b.setPrice(rs.getString("price"));
+	            b.setCategory(rs.getString("category"));
+	            b.setStatus(rs.getString("status"));
+	            b.setImage(rs.getString("image"));
+	            b.setEmail(rs.getString("email"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // Print stack trace for debugging
+	        System.out.println("SQL Exception: " + e.getMessage());
+	    }
+		
+		return b;
+	}
+	
+	
 
 }

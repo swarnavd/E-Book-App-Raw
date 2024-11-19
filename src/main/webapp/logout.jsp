@@ -11,6 +11,7 @@
 	HttpSession ses=request.getSession();
 	
 	ses.removeAttribute("user");
+	ses.removeAttribute("ob");
 	ses.invalidate();
 	HttpSession ses2=request.getSession();
 	ses2.setAttribute("lmsg", "Log out successfull!!");

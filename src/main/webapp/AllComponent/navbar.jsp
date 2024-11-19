@@ -10,8 +10,23 @@
     	</form>
 	</div>
 	<div class="col-md-3">
-		<a href="login.jsp" class="btn btn-success">Login</a>
-		<a href="register.jsp" class="btn btn-primary">Register</a>
+		<%
+			if(session.getAttribute("ob")!=null){
+		%>
+				<a href="cart.jsp?id=${ob.email}"><i class="fa-solid fa-cart-shopping fa-2x"></i></a>
+				<a href="login.jsp" class="btn btn-success">${ob.name}</a>
+				<a href="logout.jsp" class="btn btn-success">Log out</a>
+		<%	
+			}
+			else{
+		%>
+			<a href="login.jsp" class="btn btn-success">Log In</a>
+			<a href="register.jsp" class="btn btn-primary">Register</a>
+		<%
+			}
+		%>
+		
+		
 	</div>
 </div>
 </div>
@@ -27,14 +42,14 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i>Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.jsp"><i class="fa fa-home" aria-hidden="true"></i>Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="#"><i class="fa fa-book" aria-hidden="true"></i>Recent book</a>
+        <a class="nav-link active" href="all_recent_book.jsp"><i class="fa fa-book" aria-hidden="true"></i>Recent book</a>
       </li>
    
       <li class="nav-item">
-        <a class="nav-link active" href="#"><i class="fa fa-book" aria-hidden="true"></i>New Book</a>
+        <a class="nav-link active" href="all_new_book.jsp"><i class="fa fa-book" aria-hidden="true"></i>New Book</a>
       </li>
       
       <li class="nav-item">

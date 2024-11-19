@@ -17,3 +17,12 @@ status varchar(30),
 image varchar(30),
 email varchar(30)
 );
+
+create table cart(
+bid int,
+uid int,
+bookname varchar(100),
+authorname varchar(100),
+price double,
+total_price double
+);

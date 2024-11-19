@@ -36,6 +36,15 @@ background: url(../img/book.jpg);
 	background-color:white;
 }
 .fix{
-	position:fixed;
+	position:static;
 	bottom:0;
+}
+
+.black-bold{
+	color:black;
+	font-wight:900;
+	
+}
+.big{
+	font-size:32px;
 }
