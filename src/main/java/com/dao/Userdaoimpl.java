@@ -55,6 +55,7 @@ public class Userdaoimpl implements Userdao{
 	        if (rs.next()) { // Move the cursor to the first row
 	            us = new User(); // Create a new User object
 	            
+	            us.setId(rs.getInt("id"));
 	            us.setName(rs.getString("name")); // Get the 'name' column value
 	            us.setEmail(rs.getString("email")); // Get the 'email' column value
 	            us.setPassword(rs.getString("password")); // Get the 'password' column value
@@ -65,8 +66,29 @@ public class Userdaoimpl implements Userdao{
 	    }
 	    return us; // Return the User object (null if no match found)
 	}
-	
 
+	@Override
+	public void updateUser( String name, String email, String password, String phone, int id) {
+		// TODO Auto-generated method stub
+		String sql="update registration set name=?,email=?,password=?,phone=? where id=?";
+		try {
+			PreparedStatement st=con.prepareStatement(sql);
+			st.setString(1, name);
+			st.setString(2, email);
+			st.setString(3, password);
+			st.setString(4, phone);
+			st.setInt(5, id);
+			int i=st.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 
 	
 }

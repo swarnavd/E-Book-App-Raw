@@ -26,3 +26,17 @@ authorname varchar(100),
 price double,
 total_price double
 );
+
+create table orderprod(
+id int,
+orderid varchar(50),
+username varchar(100),
+email varchar(100),
+address varchar(100),
+phone varchar(30),
+bookname varchar(100),
+author varchar(100),
+price double,
+payment varchar(30)
+);
+

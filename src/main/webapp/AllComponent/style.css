@@ -43,3 +43,13 @@ background: url(../img/book.jpg);
 .bg-col-w{
 	background-color:white;
 }
+
+.j-c{
+	justify-content:center
+}
+.curve{
+	border-radius:70px;
+}
+.gap-120{
+	gap:118px;
+}

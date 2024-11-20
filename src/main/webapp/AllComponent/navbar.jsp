@@ -57,7 +57,7 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0 gap20">
-            <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="fa fa-cog" aria-hidden="true"></i>Settings</button>
+            <a href="settings.jsp" class="btn btn-light my-2 my-sm-0" ><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
             <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="fa-solid fa-address-book"></i>Contact Us</button>
     </form>
   </div>

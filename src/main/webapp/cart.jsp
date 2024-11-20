@@ -61,14 +61,15 @@
 			<div class="row text-center bg-col-w ">
 			<h1 class="text-center text-success">Your Delivery details</h1>
 				<div class="col-md-6">
-						<form>
+						<form action="Order" method="post">
 							  <div class="form-group">
 								    <label for="Name">Name</label>
-								    <input type="text" class="form-control" id="name" name="name" disabled value="<%=obj.getName()%>">
+								    <input type="text" class="form-control" id="name" name="name"  value="<%=obj.getName()%>">
+								    <input type="hidden" class="form-control" id="name" name="id"  value="<%=obj.getId()%>">
 								  </div>
 								  <div class="form-group">
 								    <label for="phone">Phone number</label>
-								    <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone" disabled value="<%=obj.getPhone()%>">
+								    <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone"  value="<%=obj.getPhone()%>">
 								  </div>
 								  <div class="form-group">
 								    <label for="land">Land Mark</label>
@@ -79,17 +80,22 @@
 								    <input type="text" class="form-control" id="state" placeholder="state" name="state">
 								  </div>
 								   <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Payment method</label>
-									  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+									  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="method">
 									    <option selected>Choose...</option>
 									    <option value="COD">COD</option>
 									    <option value="Online">Online</option>
 									    
 									  </select>
-								  </form>
+									  <div class="mt-5 text-center" >
+					<input type="submit" class="btn btn-primary" value="Order">
+					<a href="home.jsp" class="btn btn-success text-center">Continue Shopping</a>
+							
+					</div>
+								  
 				</div>
 				<div class="col-md-6">
 					<label for="Name">Email</label>
-								    <input type="text" class="form-control" id="name" name="name" disabled value="<%=obj.getEmail()%>">
+								    <input type="text" class="form-control" id="name" name="email"  value="<%=obj.getEmail()%>">
 
 								  <div class="form-group">
 								    <label for="city">City</label>
@@ -101,15 +107,12 @@
 								  </div>
 								  <div class="form-group">
 								    <label for="state">Pin Code</label>
-								    <input type="text" class="form-control" id="pincode" placeholder="pincode" name="pincpde">
+								    <input type="text" class="form-control" id="pincode" placeholder="pincode" name="pincode">
 								  </div>
 								  
 				</div>
-				<div class="mt-5 text-center" >
-					<a href="" class="btn btn-primary">Order Now</a>
-					<a href="home.jsp" class="btn btn-success text-center">Continue Shopping</a>
-							
-					</div>
+				</form>
+				
 					
 							
 					
